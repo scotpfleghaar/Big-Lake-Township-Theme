@@ -11,24 +11,25 @@
 
 ?>
 
-	</div><!-- #content -->
 
-	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'biglaketownship' ) ); ?>"><?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'biglaketownship' ), 'WordPress' );
-			?></a>
-			<span class="sep"> | </span>
-			<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'biglaketownship' ), 'biglaketownship', '<a href="http://underscores.me/">Scot Pfleghaar</a>' );
-			?>
-		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
-</div><!-- #page -->
-
+<footer>
+<div class="">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<?php if(is_active_sidebar('footer-left')) :?>
+						<?php dynamic_sidebar('footer-left'); ?>
+					<?php endif;?>
+				</div>
+			<div class="col-md-6">
+				<?php if(is_active_sidebar('footer-right')) :?>
+                    <?php dynamic_sidebar('footer-right'); ?>
+                <?php endif;?>
+			</div>
+		</div>
+	</div>
+</footer>
 <?php wp_footer(); ?>
-
 </body>
+
 </html>

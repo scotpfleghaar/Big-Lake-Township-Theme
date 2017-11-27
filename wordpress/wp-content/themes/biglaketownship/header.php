@@ -10,47 +10,58 @@
  */
 
 ?>
-<!doctype html>
-<html <?php language_attributes(); ?>>
-<head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<?php wp_head(); ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset-"<?php bloginfo('charset'); ?>">
+    <title><?php bloginfo( 'name' ); ?></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="<?php bloginfo('template_directory') ?>/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/css/bootstrap.min.css">
+    <script src="<?php bloginfo('template_directory') ?>/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<?php bloginfo('stylesheet_url');?>">
+
+    <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
-<div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'biglaketownship' ); ?></a>
+<body>
+<nav class="navbar-default navbar-inverse">
+<div class="container">
+   
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="<?php bloginfo('url');?>"><?php bloginfo('name'); ?></a>
+    </div>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-			<?php
-			endif;
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <?php
+            wp_nav_menu( array(
+                'theme_location'    => 'primary',
+                'depth'             => 2,
+                'container'         => false,
+                'menu_class'        => 'nav navbar-nav',
+                'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                'walker'            => new WP_Bootstrap_Navwalker())
+            );
+        ?> 
+    <form method='get' class="navbar-form navbar-right" action='<?php echo esc_url(home_url('/')); ?>'>
+       <label for="navbar-search" class='sr-only'><?php _e('Search', 'textdomain')?></label>
+       <div class="form-group">
+           <input type="text" class='form-control' name='s' id="navbar-search">
 
-			$description = get_bloginfo( 'description', 'display' );
-			if ( $description || is_customize_preview() ) : ?>
-				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-			<?php
-			endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'biglaketownship' ); ?></button>
-			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				) );
-			?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="content" class="site-content">
+       </div>
+       <button type='submit' class='btn btn-defualt'><?php _e('Search', 'textdomain')?></button>
+    </form>
+   
+    </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+</nav>

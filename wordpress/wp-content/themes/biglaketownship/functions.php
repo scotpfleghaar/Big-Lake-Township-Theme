@@ -7,6 +7,8 @@
  * @package biglaketownship
  */
 
+require_once get_template_directory() . '/wp-bootstrap-navwalker.php';
+
 if ( ! function_exists( 'biglaketownship_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -16,6 +18,13 @@ if ( ! function_exists( 'biglaketownship_setup' ) ) :
 	 * as indicating support for post thumbnails.
 	 */
 	function biglaketownship_setup() {
+
+
+		register_nav_menus( array(
+			'primary' => __('Primary Menu'),
+		) );
+
+
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -101,13 +110,29 @@ add_action( 'after_setup_theme', 'biglaketownship_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function biglaketownship_widgets_init() {
+	register_sidebar(array(
+        'name' => 'Sidebar',
+        'id' => 'sidebar',
+        'before_widget' => '<div class="panel panel-default">',
+        'after_widget' => '</div></div>',
+        'before_title' => '<div class="panel-heading"><h3 class="panel-title">',
+        'after_title' => '</h3></div><div class="panel-body">'
+	));
+	
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'biglaketownship' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'biglaketownship' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
+		'name'          => 'Footer left',
+		'id'            => 'footer-left',
+		'before_widget' => '<div>',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2>',
+		'after_title'   => '</h2>',
+	) );
+	register_sidebar( array(
+		'name'          => 'Footer Right',
+		'id'            => 'footer-right',
+		'before_widget' => '<div>',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2>',
 		'after_title'   => '</h2>',
 	) );
 }
