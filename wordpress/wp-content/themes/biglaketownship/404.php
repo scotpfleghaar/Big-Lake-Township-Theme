@@ -9,52 +9,57 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
 
-			<section class="error-404 not-found">
-				<header class="page-header">
+
+
+<div class="single-cover fill" style="background-image: url('<?php 
+                if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+                    the_post_thumbnail_url();
+                } 
+                ?>');">
+        <div class="container">
+			<div class="row single-jumbotron">
+				<div class="col-sm-12">
+					<h1><?php wp_title($sep = ''); ?></h1>
+				</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+			<header class="page-header">
 					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'biglaketownship' ); ?></h1>
 				</header><!-- .page-header -->
 
 				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'biglaketownship' ); ?></p>
-
-					<?php
-						get_search_form();
-
-						the_widget( 'WP_Widget_Recent_Posts' );
-					?>
-
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'biglaketownship' ); ?></h2>
-						<ul>
-						<?php
-							wp_list_categories( array(
-								'orderby'    => 'count',
-								'order'      => 'DESC',
-								'show_count' => 1,
-								'title_li'   => '',
-								'number'     => 10,
-							) );
-						?>
-						</ul>
-					</div><!-- .widget -->
-
-					<?php
-
-						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'biglaketownship' ), convert_smilies( ':)' ) ) . '</p>';
-						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
-
-						the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try a search?', 'biglaketownship' ); ?></p>
+					<form method='get' class="navbar-form" action='<?php echo esc_url(home_url('/')); ?>'>
+					<label for="navbar-search" class='sr-only'><?php _e('Search', 'textdomain')?></label>
+					<div class="form-group">
+						<input type="text" class='form-control' name='s' id="navbar-search">
+			 
+					</div>
+					<button type='submit' class='btn btn-primary'><?php _e('Search', 'textdomain')?></button>
+				 </form>
 				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
+            </div>
+            <div class="col-sm-4">
+                <?php if(is_active_sidebar('sidebar')) :?>
+                    <?php dynamic_sidebar('sidebar'); ?>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+<?php get_footer(); ?>
 
-<?php
-get_footer();
+
+
+
+
+
+
+
+

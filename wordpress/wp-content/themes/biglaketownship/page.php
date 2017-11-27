@@ -14,25 +14,38 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+<div class="single-cover fill" style="background-image: url('<?php 
+                if ( has_post_thumbnail() ) { // check if the post has a Post Thumbnail assigned to it.
+                    the_post_thumbnail_url();
+                } 
+                ?>');">
+        <div class="container">
+			<div class="row single-jumbotron">
+				<div class="col-sm-12">
+					<h1><?php wp_title($sep = ''); ?></h1>
+				</div>
+            </div>
+        </div>
+    </div>
 
-			<?php
-			while ( have_posts() ) : the_post();
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                <?php
+                // TO SHOW THE PAGE CONTENTS
+                while ( have_posts() ) : the_post(); ?> <!--Because the_content() works only inside a WP Loop -->
+                        <?php the_content(); ?> <!-- Page Content -->
+                <?php
+                endwhile; //resetting the page loop
+                wp_reset_query(); //resetting the page query
+                ?>
+            </div>
+            <div class="col-sm-4">
+                <?php if(is_active_sidebar('sidebar')) :?>
+                    <?php dynamic_sidebar('sidebar'); ?>
+                <?php endif;?>
+            </div>
+        </div>
+    </div>
 
-				get_template_part( 'template-parts/content', 'page' );
-
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
-
-			endwhile; // End of the loop.
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_sidebar();
-get_footer();
+<?php get_footer(); ?>

@@ -24,7 +24,7 @@
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
+	<!-- <footer class="entry-footer">
 		<?php biglaketownship_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
+	</footer> -->
 </article><!-- #post-<?php the_ID(); ?> -->

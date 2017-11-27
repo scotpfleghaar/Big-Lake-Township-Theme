@@ -19,54 +19,49 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-
-<div id="comments" class="comments-area">
-
+<div class="comments">
+<?php if(have_comments()): ?>
+	<h3 class="comments-title">
 	<?php
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) : ?>
-		<h2 class="comments-title">
-			<?php
-			$comment_count = get_comments_number();
-			if ( 1 === $comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html_e( 'One thought on &ldquo;%1$s&rdquo;', 'biglaketownship' ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			} else {
-				printf( // WPCS: XSS OK.
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $comment_count, 'comments title', 'biglaketownship' ) ),
-					number_format_i18n( $comment_count ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			}
-			?>
-		</h2><!-- .comments-title -->
-
-		<?php the_comments_navigation(); ?>
-
-		<ol class="comment-list">
-			<?php
-				wp_list_comments( array(
-					'style'      => 'ol',
-					'short_ping' => true,
-				) );
-			?>
-		</ol><!-- .comment-list -->
-
-		<?php the_comments_navigation();
-
-		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() ) : ?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'biglaketownship' ); ?></p>
-		<?php
-		endif;
-
-	endif; // Check for have_comments().
-
-	comment_form();
+		if(get_comments_number() == 1){
+			echo get_comments_number(). ' Comment';
+		} else {
+			echo get_comments_number(). ' Comments';
+		}
 	?>
+	</h3>
 
-</div><!-- #comments -->
+	<ul class="row comment-list">
+	<?php
+		wp_list_comments(array(
+			'avatar_size' => 90,
+			'callback'		=> 'add_theme_comments'
+		)
+		);
+	?>
+	</ul>
+<?php endif; ?>
+
+<?php
+        // If comments are closed and there are comments, let's leave a little note, shall we?
+        if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+    ?>
+        <p class="no-comments"><?php _e( 'Comments are closed.'); ?></p>
+    <?php endif; ?>
+</div>
+
+<hr>
+
+<?php 
+          $comments_args = array(
+            // change the title of send button 
+            'label_submit'=>'Send',
+            // change the title of the reply section
+            'title_reply'=>'Write a Reply or Comment',
+            // remove "Text or HTML to be displayed after the set of comment fields"
+            'comment_notes_after' => '',
+            // redefine your own textarea (the comment body)
+            'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><br />
+            <textarea class="form-control" id="comment" name="comment" aria-required="true"></textarea></p>',
+          );
+comment_form($comments_args);
