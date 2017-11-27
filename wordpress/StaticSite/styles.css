@@ -1,0 +1,36 @@
+.nav-search {
+    padding: 11px 15px 0px 15px;
+    margin: 0;
+}
+
+.cover {
+    height: 50vh;
+    margin-bottom: 25px;
+}
+
+.main-jumbotron {
+    margin-top: 10vh;
+    background: rgba(255, 255, 255, .8)
+}
+
+footer {
+    padding: 25px;
+    margin-top: 25px;
+    color: white;
+    background-color: #333;
+}
+
+.single-cover {
+    margin-bottom: 25px;
+}
+
+.single-jumbotron {
+    padding: 10px 0 10px 0;
+    text-align: center;
+    background: rgba(255, 255, 255, .8);
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
