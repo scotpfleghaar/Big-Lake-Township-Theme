@@ -28,7 +28,7 @@
 </head>
 
 <body>
-<nav class="navbar-default navbar-inverse">
+<nav class="navbar-default navbar-static-top">
 <div class="container">
    
     <div class="navbar-header">
@@ -38,7 +38,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="<?php bloginfo('url');?>"><?php bloginfo('name'); ?></a>
+    <!-- <a class="navbar-brand" href="<?php bloginfo('url');?>"><?php bloginfo('name'); ?></a> -->
+    
+    <a class="navbar-brand" href="<?php bloginfo('url');?>">
+            <img src="<?php $custom_logo_id = get_theme_mod( 'custom_logo' );
+        $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+        echo $image[0];
+        ?>" alt="" style='height: 100%; object-fit: cover;'>
+    </a>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,7 +67,7 @@
            <input type="text" class='form-control' name='s' id="navbar-search">
 
        </div>
-       <button type='submit' class='btn btn-defualt'><?php _e('Search', 'textdomain')?></button>
+       <button type='submit' class='btn btn-primary'><?php _e('Search', 'textdomain')?></button>
     </form>
    
     </div><!-- /.navbar-collapse -->

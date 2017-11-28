@@ -521,7 +521,8 @@ footer {
 	overflow: auto;
 }
 
-.dropdown-menu {
+
+/* .dropdown-menu {
 	color: white;
 	background-color: #333;
 }
@@ -544,4 +545,16 @@ footer {
 .dropdown-menu>.active>a:focus,
 .dropdown-menu>.active>a:hover {
 	background-color: #777;
+} */
+
+.navbar-brand {
+	padding: 1px;
+}
+
+.navbar-default {
+	background-color: white;
+}
+
+.navbar-static-top {
+	border-bottom: 1px solid #777;
 }
