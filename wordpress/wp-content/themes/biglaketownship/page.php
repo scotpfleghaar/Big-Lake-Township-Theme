@@ -30,7 +30,8 @@ get_header(); ?>
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-8">
+           
+            <div class="col-sm-6 col-sm-offset-1">
                 <?php
                 // TO SHOW THE PAGE CONTENTS
                 while ( have_posts() ) : the_post(); ?> <!--Because the_content() works only inside a WP Loop -->
@@ -45,6 +46,7 @@ get_header(); ?>
                     <?php dynamic_sidebar('sidebar'); ?>
                 <?php endif;?>
             </div>
+            
         </div>
     </div>
 
