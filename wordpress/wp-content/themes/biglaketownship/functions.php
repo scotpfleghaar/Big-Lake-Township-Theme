@@ -114,9 +114,9 @@ function biglaketownship_widgets_init() {
         'name' => 'Sidebar',
         'id' => 'sidebar',
         'before_widget' => '<div class="panel panel-default">',
-        'after_widget' => '</div></div>',
+        'after_widget' => '</div></div></div>',
         'before_title' => '<div class="panel-heading"><h3 class="panel-title">',
-        'after_title' => '</h3></div><div class="panel-body">'
+        'after_title' => '</h3></div><div class="panel-body"><div class="widget-center">'
 	));
 	
 	register_sidebar( array(

@@ -558,3 +558,17 @@ footer {
 .navbar-static-top {
 	border-bottom: 1px solid #777;
 }
+
+.panel {
+	position: relative;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.widget-center {
+	text-align: center;
+}
+
+.textwidget {
+	text-align: center;
+}
